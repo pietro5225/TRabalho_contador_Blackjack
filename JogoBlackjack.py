@@ -31,7 +31,7 @@ class JogoBlackjack:
         if self.rodada_encerrada:
             return
         self.jogador.comprar(self.baralho, self.contador_hilo)
-        if self.jogador.mao.estourou():
+        if self.jogador.mao.valor() > 21:
             self.rodada_encerrada = True
 
     def jogador_para(self):
