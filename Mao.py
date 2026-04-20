@@ -16,21 +16,35 @@ class Mao:
         """Remove todas as cartas da mão."""
         self.cartas = []
 
-    def valor(self):
-        """Calcula o valor total da mão considerando regras do Blackjack."""
-        total = 0
-        ases = 0
+    def valorespossiveis(self):
+    """Calcula o melhor valor possível da mão no Blackjack."""
+    total_base = 0
+    ases = 0
 
-        for carta in self.cartas:
-            total += carta.valor_blackjack()
-            if carta.valor == 'A':
-                ases += 1
+    # soma base sem considerar os ases
+    for carta in self.cartas:
+        if carta.valor == "A":
+            ases += 1
+        else:
+            total_base += carta.valor_blackjack()
 
-        while total > 21 and ases > 0:
-            total -= 10
-            ases -= 1
+    totais = [total_base]
 
-        return total
+    # gera todas combinações possíveis dos ases
+    for _ in range(ases):
+        novos_totais = []
+        for total in totais:
+            novos_totais.append(total + 1)
+            novos_totais.append(total + 11)
+        totais = novos_totais
+
+    # filtra valores válidos (<=21)
+    validos = [v for v in totais if v <= 21]
+
+    if validos:
+        return max(validos)
+
+    return min(totais)
 
     def eh_blackjack(self):
         """Verifica se a mão é um Blackjack (21 com 2 cartas)."""
