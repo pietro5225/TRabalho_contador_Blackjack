@@ -35,6 +35,13 @@ class Mao:
         """Verifica se a mão é um Blackjack (21 com 2 cartas)."""
         return len(self.cartas) == 2 and self.valor() == 21
 
+     def melhor_valor(self) -> int:
+         """Retrona o melhor valor possivel da mão no BlackJack"""
+         validos = [valor for valor in self.valores_possiveis() if valor <= 21]
+         if validos:
+             return max(validos)
+         return min(self.valores_possiveis())
+
     def __str__(self):
         """Retorna representação da mão com cartas e valor total."""
         texto = self.dono + ": "
