@@ -11,7 +11,6 @@ def main():
             jogo.iniciar_rodada()
 
             # estado inicial da rodada
-            print("Estado inicial:")
             print(jogo.obter_estado_textual())
 
             # turno do jogador
