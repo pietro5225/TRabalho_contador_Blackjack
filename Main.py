@@ -2,17 +2,13 @@ from JogoBlackjack import JogoBlackjack
 
 
 def main():
-    print("BLACKJACK\n")
 
     try:
         jogo = JogoBlackjack(quantidade_baralhos=1)
 
         while True:  # LOOP INFINITO DO JOGO
 
-            # inicia nova rodada
             jogo.iniciar_rodada()
-
-            print("\nNOVA RODADA\n")
 
             # estado inicial da rodada
             print("Estado inicial:")
