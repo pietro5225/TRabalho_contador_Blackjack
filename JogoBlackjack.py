@@ -1,4 +1,4 @@
-import Carta,Mao,Jogador,Crupie,Baralho,MotorProbabilidade,ContadorHilo
+import Jogador,Crupie,Baralho,MotorProbabilidade,ContadorHilo
 #Classe jogoblackjack: fundamental para controlar a lógica principal do jogo
 class JogoBlackjack:
     def _init_(self, quantidade_baralhos: int = 1):
