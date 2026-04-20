@@ -43,6 +43,7 @@ True Count = Running Count / Número de baralhos restantes
 ## Estrutura do Projeto
 
 projeto_blackjack/
+
 │
 ├── Carta.py
 
@@ -164,7 +165,11 @@ Execute:
 python main.py
 
 ## Autores:
+
 Joaquim Simoes
+
 Mateus Almeida
+
 Pietro Grizendi
+
 Rafael Barbosa
