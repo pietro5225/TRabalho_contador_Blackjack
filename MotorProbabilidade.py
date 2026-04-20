@@ -15,7 +15,7 @@ class MotorProbabilidade:
             if carta.valor_blackjack()>limite:
                 cartas_perde+=1
 
-        return ((cartas_perde/baralho_atual))
+        return ((cartas_perde/baralho_atual)*100)
     
     def probabilidade_carta_alta(self):
         baralho_atual=len(self.baralho.cartas)
@@ -25,7 +25,7 @@ class MotorProbabilidade:
            if carta.valor_blackjack()>=10:
                cartas_altas+=1
 
-        return (cartas_altas/baralho_atual)
+        return ((cartas_altas/baralho_atual)*100)
     
     def probabilidade_cada_carta(self):
         baralho_atual=len(self.baralho.cartas)
@@ -38,13 +38,24 @@ class MotorProbabilidade:
             for i in range(baralho_atual):
                 if (self.baralho.cartas[i].valor==valor_alvo):
                     encontradas+=1
-            probababilidades_por_carta[valor_alvo]=(encontradas/baralho_atual)    
+            probababilidades_por_carta[valor_alvo]=((encontradas/baralho_atual)*100)    
         return probababilidades_por_carta
         #Retorna um dicionario com cada probabilidade de tirar cada uma das cartas
     
     def probabilidade_calculada(self):
-        return (self.probabilidade_carta_alta()-((self.contador_hilo.probabilidade_empirica_alta(len(self.baralho.cartas)))/100))*100
+        return (self.probabilidade_carta_alta()-((self.contador_hilo.probabilidade_empirica_alta(len(self.baralho.cartas)))))
     
-    def relatorio_final(self):
-        print(f"A diferença entre a chance real e o método hilo é de {self.probabilidade_calculada():.2f}%")
+    def obter_resumo_probabilidades(self, mao_atual):
+        chance_estourar=self.calcular_probabilidades_reais(mao_atual)
+        chance_alta=self.probabilidade_carta_alta()
+        dif_hilo=self.probabilidade_calculada()
+
+        resumo=(
+           f"------------------------------\n"
+           f"Risco de estourar: {chance_estourar:.1f}%"
+           f"Chance de carta alta no baralho: {chance_alta:.1f}%"
+           f"Sua chance real em comparação com o hilo: {dif_hilo:.2f}%"
+        )
+        return resumo
+
 
