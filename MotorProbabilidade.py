@@ -1,4 +1,5 @@
 from ContadorHilo import ContadorHilo
+from Carta import Carta
 
 class MotorProbabilidade:
     def __init__(self,baralho,contador_hilo):
@@ -22,7 +23,7 @@ class MotorProbabilidade:
         cartas_altas=0
 
         for carta in self.baralho.cartas:
-           if carta.valor_blackjack()>=10:
+           if int(carta.valor_blackjack())>=10:
                cartas_altas+=1
 
         return ((cartas_altas/baralho_atual)*100)

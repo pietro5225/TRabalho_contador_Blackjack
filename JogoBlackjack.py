@@ -18,10 +18,10 @@ class JogoBlackjack:
         self.crupie.limpar_mao()
         self.rodada_encerrada = False
 
-    def iniciar_rodada(self):
+    def  iniciar_rodada(self):
         self.reiniciar_rodada()
 
-        if self.baralho.__str__() < 15:
+        if self.baralho.cartas_restantes() < 15:
             quantidade = self.baralho.quantidade_baralhos
             self.baralho = Baralho(quantidade)
             self.contador_hilo.reiniciar()
@@ -35,7 +35,7 @@ class JogoBlackjack:
         if self.rodada_encerrada:
             return
         self.jogador.comprar(self.baralho, self.contador_hilo)
-        if self.jogador.mao.valor() > 21:
+        if self.jogador.mao.melhor_valor() > 21:
             self.rodada_encerrada = True
 
     def jogador_para(self):
@@ -46,12 +46,12 @@ class JogoBlackjack:
         self.rodada_encerrada = True
 
     def resultado(self) -> str:
-        total_jogador = self.jogador.mao.valor()
-        total_crupie = self.crupie.mao.valor()
+        total_jogador = self.jogador.mao.melhor_valor()
+        total_crupie = self.crupie.mao.melhor_valor()
 
-        if self.jogador.mao.valor() > 21:
+        if self.jogador.mao.melhor_valor() > 21:
             return "Jogador estourou. Crupiê vence."
-        if self.crupie.mao.valor() > 21:
+        if self.crupie.mao.melhor_valor() > 21:
             return "Crupiê estourou. Jogador vence."
         if self.jogador.mao.eh_blackjack() and not self.crupie.mao.eh_blackjack():
             return "Blackjack do jogador. Jogador vence."
@@ -64,7 +64,9 @@ class JogoBlackjack:
         return "Empate."
 
     def obter_estado_textual(self, esconder_primeira_carta_crupie: bool = True) -> str:
-        resumo = self.motor_probabilidade.obter_resumo_probabilidades()
+        resumo = self.motor_probabilidade.obter_resumo_probabilidades(
+        self.jogador.mao.melhor_valor()
+    )
 
         cartas_jogador = ", ".join(str(carta) for carta in self.jogador.mao.cartas)
 
@@ -73,10 +75,17 @@ class JogoBlackjack:
             total_crupie = "?"
         else:
             cartas_crupie = ", ".join(str(carta) for carta in self.crupie.mao.cartas)
-            total_crupie = str(self.crupie.mao.valor())
+            total_crupie = str(self.crupie.mao.melhor_valor())
 
         texto = (
             f"================ BLACKJACK ================\n\n"
             f"Jogador:\n"
             f"  Cartas: {cartas_jogador}\n"
-            f"  Total : {self.jogador.mao.valor()}\n\n")
+            f"  Total : {self.jogador.mao.melhor_valor()}\n\n"
+            f"Crupiê:\n"
+            f"  Cartas: {cartas_crupie}\n"
+            f"  Total : {total_crupie}\n\n"
+            f"{resumo}\n"
+        )
+
+        return texto

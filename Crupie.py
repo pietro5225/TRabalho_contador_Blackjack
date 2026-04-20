@@ -5,4 +5,4 @@ class Crupie(Jogador):
         super().__init__("Crupiê")
 
     def deve_comprar(self) -> bool:
-        return self.mao.melhor_valor() < 17
+        return (self.mao.melhor_valor()< 17)

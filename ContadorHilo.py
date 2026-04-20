@@ -1,3 +1,4 @@
+from Carta import Carta
 class ContadorHilo:
     """Controla a contagem de cartas pelo método Hi-Lo."""
 
@@ -6,7 +7,7 @@ class ContadorHilo:
 
     def atualizar(self, carta):
         if carta is not None:
-            self.contagem_recorrente += carta.valor_hilo()
+            self.contagem_recorrente += int(carta.valor_hilo())
 
     def reiniciar(self):
         self.contagem_recorrente = 0
