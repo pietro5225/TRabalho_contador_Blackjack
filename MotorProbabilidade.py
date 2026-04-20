@@ -1,4 +1,4 @@
-import ContadorHilo
+from ContadorHilo import ContadorHilo
 
 class MotorProbabilidade:
     def __init__(self,baralho,contador_hilo):

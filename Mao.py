@@ -1,3 +1,4 @@
+from Carta import Carta
 class Mao:
     """Representa a mão de um jogador no Blackjack."""
 

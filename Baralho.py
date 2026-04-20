@@ -1,5 +1,5 @@
 import random
-import Carta
+from Carta import Carta
 class Baralho:
     """Representa um conjunto de cartas (um ou mais baralhos)."""
 

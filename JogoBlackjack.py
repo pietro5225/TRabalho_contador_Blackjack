@@ -1,7 +1,11 @@
-import Jogador,Crupie,Baralho,MotorProbabilidade,ContadorHilo
+from Jogador import Jogador
+from Crupie import Crupie
+from Baralho import Baralho
+from MotorProbabilidade import MotorProbabilidade
+from ContadorHilo import ContadorHilo
 #Classe jogoblackjack: fundamental para controlar a lógica principal do jogo
 class JogoBlackjack:
-    def _init_(self, quantidade_baralhos: int = 1):
+    def __init__(self, quantidade_baralhos: int = 1): 
         self.baralho = Baralho(quantidade_baralhos)
         self.contador_hilo = ContadorHilo()
         self.motor_probabilidade = MotorProbabilidade(self.baralho, self.contador_hilo)
@@ -17,7 +21,7 @@ class JogoBlackjack:
     def iniciar_rodada(self):
         self.reiniciar_rodada()
 
-        if self.baralho.cartas_restantes() < 15:
+        if self.baralho.__str__() < 15:
             quantidade = self.baralho.quantidade_baralhos
             self.baralho = Baralho(quantidade)
             self.contador_hilo.reiniciar()

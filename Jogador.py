@@ -1,8 +1,10 @@
-import Baralho
-import Carta,Mao,ContadorHilo
+from Baralho import Baralho
+from Carta import Carta
+from Mao import Mao
+from ContadorHilo import ContadorHilo
 #Classe jogador: fundamental para definir conceitos e ações sobre o jogador
 class Jogador:
-    def _init_(self, nome: str):
+    def __init__(self, nome: str):
         self.nome = nome
         self.mao = Mao(nome)
 
