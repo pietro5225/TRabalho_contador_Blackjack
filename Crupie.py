@@ -1,4 +1,4 @@
-import Jogador
+from Jogador import Jogador
 #Classe crupiê: fundamental para definir conceitos e ações sobre o crupiê
 class Crupie(Jogador):
     def _init_(self):

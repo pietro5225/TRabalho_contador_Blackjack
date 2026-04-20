@@ -3,7 +3,7 @@ import Jogador,Crupie,Baralho,MotorProbabilidade,ContadorHilo
 class JogoBlackjack:
     def _init_(self, quantidade_baralhos: int = 1):
         self.baralho = Baralho(quantidade_baralhos)
-        self.contador_hilo = ContadorHiLo()
+        self.contador_hilo = ContadorHilo()
         self.motor_probabilidade = MotorProbabilidade(self.baralho, self.contador_hilo)
         self.jogador = Jogador("Jogador")
         self.crupie = Crupie()
@@ -45,9 +45,9 @@ class JogoBlackjack:
         total_jogador = self.jogador.mao.valor()
         total_crupie = self.crupie.mao.valor()
 
-        if self.jogador.mao.valor > 21():
+        if self.jogador.mao.valor() > 21:
             return "Jogador estourou. Crupiê vence."
-        if self.crupie.mao.valor > 21():
+        if self.crupie.mao.valor() > 21:
             return "Crupiê estourou. Jogador vence."
         if self.jogador.mao.eh_blackjack() and not self.crupie.mao.eh_blackjack():
             return "Blackjack do jogador. Jogador vence."
