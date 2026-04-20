@@ -45,6 +45,7 @@ True Count = Running Count / Número de baralhos restantes
 projeto_blackjack/
 
 │
+
 ├── Carta.py
 
 ├── Baralho.py
