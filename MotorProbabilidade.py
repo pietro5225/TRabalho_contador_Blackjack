@@ -1,5 +1,4 @@
-import numpy as np
-import scipy as sp
+import ContadorHilo
 
 class MotorProbabilidade:
     def __init__(self,baralho,contador_hilo):
@@ -12,17 +11,17 @@ class MotorProbabilidade:
         cartas_perde=0
         limite=21-mao_atual  
 
-        for carta in baralho_atual: 
+        for carta in self.baralho.cartas: 
             if carta.valor_blackjack()>limite:
                 cartas_perde+=1
 
-        return (cartas_perde/baralho_atual)
+        return ((cartas_perde/baralho_atual))
     
     def probabilidade_carta_alta(self):
         baralho_atual=len(self.baralho.cartas)
         cartas_altas=0
 
-        for carta in baralho_atual:
+        for carta in self.baralho.cartas:
            if carta.valor_blackjack()>=10:
                cartas_altas+=1
 
@@ -41,3 +40,11 @@ class MotorProbabilidade:
                     encontradas+=1
             probababilidades_por_carta[valor_alvo]=(encontradas/baralho_atual)    
         return probababilidades_por_carta
+        #Retorna um dicionario com cada probabilidade de tirar cada uma das cartas
+    
+    def probabilidade_calculada(self):
+        return (self.probabilidade_carta_alta()-((self.contador_hilo.probabilidade_empirica_alta(len(self.baralho.cartas)))/100))*100
+    
+    def relatorio_final(self):
+        print(f"A diferença entre a chance real e o método hilo é de {self.probabilidade_calculada():.2f}%")
+
