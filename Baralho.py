@@ -33,7 +33,10 @@ class Baralho:
         except IndexError:
             print("Baralho vazio.")
             return None
-
+            
+    def cartas_restantes(self) -> int:
+        return len(self.cartas)
+    
     def __str__(self):
         """Retorna quantidade de cartas restantes."""
         return "Baralho com " + str(len(self.cartas)) + " cartas"
