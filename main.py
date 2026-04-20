@@ -1,32 +1,50 @@
 from JogoBlackjack import JogoBlackjack
+
+
 def main():
-    print("=== TESTE DO JOGO BLACKJACK ===\n")
+    print("BLACKJACK\n")
 
     try:
-        jogo = JogoBlackjack()
-    
-        # inicia rodada
-        jogo.iniciar_rodada()
+        jogo = JogoBlackjack(quantidade_baralhos=1)
 
-        print("Estado inicial:")
-        print(jogo.obter_estado_textual())
+        while True:  # LOOP INFINITO DO JOGO
 
-        # jogador compra 1 carta
-        print("\nJogador compra uma carta...\n")
-        jogo.jogador_compra()
+            # inicia nova rodada
+            jogo.iniciar_rodada()
 
-        print(jogo.obter_estado_textual())
+            print("\nNOVA RODADA\n")
 
-        # jogador para
-        print("\nJogador decide parar...\n")
-        jogo.jogador_para()
+            # estado inicial da rodada
+            print("Estado inicial:")
+            print(jogo.obter_estado_textual())
 
-        print("\nEstado final:")
-        print(jogo.obter_estado_textual(False))
+            # turno do jogador
+            while not jogo.rodada_encerrada:
 
-        # resultado final
-        print("\nResultado:")
-        print(jogo.resultado())
+                acao = input("\nAção (hit / stand / sair): ").strip().lower()
+
+                if acao == "hit":
+                    print("\nJogador compra uma carta...\n")
+                    jogo.jogador_compra()
+                    print(jogo.obter_estado_textual())
+
+                elif acao == "stand":
+                    print("\nJogador decide parar...\n")
+                    jogo.jogador_para()
+
+                elif acao == "sair":
+                    print("\nEncerrando o jogo...")
+                    return
+
+                else:
+                    print("Comando inválido. Use: hit, stand ou sair.\n")
+
+            # fim da rodada
+            print("\nRESULTADO\n")
+            print(jogo.obter_estado_textual(esconder_primeira_carta_crupie=False))
+            print(jogo.resultado())
+
+            input("Pressione ENTER para próxima rodada...")
 
     except Exception as e:
         print("Erro durante execução:")
