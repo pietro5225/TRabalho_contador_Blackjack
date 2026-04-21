@@ -1,50 +1,43 @@
-from JogoBlackjack import JogoBlackjack
+from JogoBlackjack import JogoBlackjack 
+
+quantidade_baralhos=1
+continuar_jogo=True
+jogo=JogoBlackjack(quantidade_baralhos)
 
 
-def main():
+while(continuar_jogo):
 
-    try:
-        jogo = JogoBlackjack(quantidade_baralhos=1)
+    jogo.iniciar_rodada()
+    print(jogo.obter_estado_textual())
 
-        while True:  # LOOP INFINITO DO JOGO
+    while not jogo.rodada_encerrada:
+        escolha=input("Digite 'c' para comprar ou 'p' para parar ").strip().lower()
 
-            jogo.iniciar_rodada()
-
-            # estado inicial da rodada
+        if escolha== 'c':
+            jogo.jogador_compra()
             print(jogo.obter_estado_textual())
+    
+        elif escolha=='p':
+            jogo.jogador_para()
 
-            # turno do jogador
-            while not jogo.rodada_encerrada:
+        else:
+            print("Digite uma letra valida, 'c' para comprar ou 'p' para parar")
 
-                acao = input("\nAção (hit / stand / sair): ").strip().lower()
+    print(jogo.obter_estado_textual(False))  # revela carta do crupiê
+    print(jogo.resultado())
 
-                if acao == "hit":
-                    print("\nJogador compra uma carta...\n")
-                    jogo.jogador_compra()
-                    print(jogo.obter_estado_textual())
+    resposta = input("Quer jogar de novo? (s/n): ").strip().lower()
+    while(resposta!='s'and resposta!='n'):
+        resposta=input("Digite 's' ou 'n' continuar ou para sair")
+    if resposta=='s':
+        continuar_jogo=True
+    else:
+        continuar_jogo=False
+        print("Obrigado por jogar!")
 
-                elif acao == "stand":
-                    print("\nJogador decide parar...\n")
-                    jogo.jogador_para()
-
-                elif acao == "sair":
-                    print("\nEncerrando o jogo...")
-                    return
-
-                else:
-                    print("Comando inválido. Use: hit, stand ou sair.\n")
-
-            # fim da rodada
-            print("\nRESULTADO\n")
-            print(jogo.obter_estado_textual(esconder_primeira_carta_crupie=False))
-            print(jogo.resultado())
-
-            input("Pressione ENTER para próxima rodada...")
-
-    except Exception as e:
-        print("Erro durante execução:")
-        print(e)
+    
 
 
-if __name__ == "__main__":
-    main()
+
+    
+
