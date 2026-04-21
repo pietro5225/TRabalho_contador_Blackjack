@@ -9,11 +9,13 @@ class Jogador:
         self.mao = Mao(nome)
 
     def comprar(self, baralho: Baralho, contador_hilo: ContadorHilo) -> Carta:
+        """Compra a carta do baralho"""
         carta = baralho.comprar_carta()
         self.mao.adicionar_carta(carta)
         contador_hilo.atualizar(carta)
         return carta
 
     def limpar_mao(self):
+        """Limpa a mão"""
         self.mao.limpar()
 

@@ -2,12 +2,12 @@ from Carta import Carta
 class Mao:
     """Representa a mão de um jogador no Blackjack."""
 
-    def __init__(self, dono):
+    def __init__(self, dono:str):
         """Inicializa a mão associada a um jogador."""
         self.dono = dono
         self.cartas = []
 
-    def adicionar_carta(self, carta):
+    def adicionar_carta(self, carta:Carta):
         """Adiciona uma carta à mão."""
         if carta is not None:
             self.cartas.append(carta)
@@ -16,7 +16,7 @@ class Mao:
         """Remove todas as cartas da mão."""
         self.cartas = []
 
-    def valores_possiveis(self):
+    def valores_possiveis(self)->list:
         """Calcula o melhor valor possível da mão no Blackjack."""
         total_base = 0
         ases = 0
@@ -39,7 +39,7 @@ class Mao:
             totais = novos_totais
 
         return totais
-    def eh_blackjack(self):
+    def eh_blackjack(self)->bool:
         """Verifica se a mão é um Blackjack (21 com 2 cartas)."""
         return len(self.cartas) == 2 and self.melhor_valor() == 21
 
@@ -51,7 +51,7 @@ class Mao:
         return min(self.valores_possiveis())
         
 
-    def __str__(self):
+    def __str__(self)->str:
         """Retorna representação da mão com cartas e valor total."""
         texto = self.dono + ": "
 

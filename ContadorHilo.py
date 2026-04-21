@@ -12,7 +12,7 @@ class ContadorHilo:
     def reiniciar(self):
         self.contagem_recorrente = 0
 
-    def calcular_valor_real(self, cartas_restantes):
+    def calcular_valor_real(self, cartas_restantes:int)->float:
         """Calcula o valor real da contagem com base no número de baralhos que faltam."""
         if cartas_restantes <= 0:
             return 0.0
@@ -22,7 +22,7 @@ class ContadorHilo:
 
         return self.contagem_recorrente / baralhos_restantes
 
-    def estimar_vantagem(self, cartas_restantes):
+    def estimar_vantagem(self, cartas_restantes:int)->float:
         """Estima a vantagem percentual atual do jogador sobre a mesa."""
         contagem_verdadeira = self.calcular_valor_real(cartas_restantes)
         vantagem_base_cassino = -0.5
@@ -30,7 +30,7 @@ class ContadorHilo:
 
         return vantagem_base_cassino + (contagem_verdadeira * incremento_jogador)
 
-    def probabilidade_empirica_alta(self, cartas_restantes):
+    def probabilidade_empirica_alta(self, cartas_restantes:int)->float:
         """Estima a probabilidade da próxima carta ser alta (10, J, Q, K, A)"""
         contagem_verdadeira = self.calcular_valor_real(cartas_restantes)
         estimativa_cartas_altas = 20 + contagem_verdadeira
@@ -38,7 +38,7 @@ class ContadorHilo:
         probabilidade = max(0.0, min(1.0, probabilidade))
         return probabilidade * 100
 
-    def obter_relatorio_estrategico(self, cartas_restantes):
+    def obter_relatorio_estrategico(self, cartas_restantes:int)->str:
         """Retorna uma string formatada com os dados do Hi-Lo."""
         vl = self.calcular_valor_real(cartas_restantes)
         vantagem = self.estimar_vantagem(cartas_restantes)

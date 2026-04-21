@@ -14,11 +14,13 @@ class JogoBlackjack:
         self.rodada_encerrada = False
 
     def reiniciar_rodada(self):
+        """"Reinicia a rodada"""
         self.jogador.limpar_mao()
         self.crupie.limpar_mao()
         self.rodada_encerrada = False
 
     def  iniciar_rodada(self):
+        """"Inicia a rodada"""
         self.reiniciar_rodada()
 
         if self.baralho.cartas_restantes() < 15:
@@ -32,6 +34,7 @@ class JogoBlackjack:
             self.crupie.comprar(self.baralho, self.contador_hilo)
 
     def jogador_compra(self):
+        """"Compra as cartas"""
         if self.rodada_encerrada:
             return
         self.jogador.comprar(self.baralho, self.contador_hilo)
@@ -39,6 +42,7 @@ class JogoBlackjack:
             self.rodada_encerrada = True
 
     def jogador_para(self):
+        """"Termina a rodada do jogador"""
         if self.rodada_encerrada:
             return
         while self.crupie.deve_comprar():
@@ -64,6 +68,7 @@ class JogoBlackjack:
         return "Empate."
 
     def obter_estado_textual(self, esconder_primeira_carta_crupie: bool = True) -> str:
+        """"Mostra como esta o jogo com as cartas do jogador e do crupiê"""
         resumo = self.motor_probabilidade.obter_resumo_probabilidades(
         self.jogador.mao.melhor_valor()
     )
@@ -89,3 +94,10 @@ class JogoBlackjack:
         )
 
         return texto
+    
+    def __str__(self)->str:       
+        cartas_restantes = len(self.baralho.cartas)
+        return (
+            f"Cartas restantes: {cartas_restantes}\n"
+            f"Chance de carta alta: {self.probabilidade_carta_alta():.1f}%"
+        )

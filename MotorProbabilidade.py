@@ -1,8 +1,9 @@
 from ContadorHilo import ContadorHilo
 from Carta import Carta
+from Baralho import Baralho
 
 class MotorProbabilidade:
-    def __init__(self,baralho,contador_hilo):
+    def __init__(self,baralho:Baralho ,contador_hilo: ContadorHilo):
         self.baralho=baralho
         self.contador_hilo= contador_hilo
         

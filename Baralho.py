@@ -3,7 +3,7 @@ from Carta import Carta
 class Baralho:
     """Representa um conjunto de cartas (um ou mais baralhos)."""
 
-    def __init__(self, quantidade_baralhos):
+    def __init__(self, quantidade_baralhos:int):
         """Inicializa o baralho com uma quantidade de decks."""
         self.quantidade_baralhos = quantidade_baralhos
         self.cartas = []
@@ -35,8 +35,9 @@ class Baralho:
             return None
             
     def cartas_restantes(self) -> int:
+        """Retorna o numero de cartas restantes."""
         return len(self.cartas)
     
-    def __str__(self):
+    def __str__(self)->str:
         """Retorna quantidade de cartas restantes."""
         return "Baralho com " + str(len(self.cartas)) + " cartas"
