@@ -1,37 +1,43 @@
-from JogoBlackjack import JogoBlackjack
-def main():
-    print("=== TESTE DO JOGO BLACKJACK ===\n")
+from JogoBlackjack import JogoBlackjack 
 
-    try:
-        jogo = JogoBlackjack()
+quantidade_baralhos=1
+continuar_jogo=True
+jogo=JogoBlackjack(quantidade_baralhos)
+
+
+while(continuar_jogo):
+
+    jogo.iniciar_rodada()
+    print(jogo.obter_estado_textual())
+
+    while not jogo.rodada_encerrada:
+        escolha=input("Digite 'c' para comprar ou 'p' para parar ").strip().lower()
+
+        if escolha== 'c':
+            jogo.jogador_compra()
+            print(jogo.obter_estado_textual())
     
-        # inicia rodada
-        jogo.iniciar_rodada()
+        elif escolha=='p':
+            jogo.jogador_para()
 
-        print("Estado inicial:")
-        print(jogo.obter_estado_textual())
+        else:
+            print("Digite uma letra valida, 'c' para comprar ou 'p' para parar")
 
-        # jogador compra 1 carta
-        print("\nJogador compra uma carta...\n")
-        jogo.jogador_compra()
+    print(jogo.obter_estado_textual(False))  # revela carta do crupiê
+    print(jogo.resultado())
 
-        print(jogo.obter_estado_textual())
+    resposta = input("Quer jogar de novo? (s/n): ").strip().lower()
+    while(resposta!='s'and resposta!='n'):
+        resposta=input("Digite 's' ou 'n' continuar ou para sair")
+    if resposta=='s':
+        continuar_jogo=True
+    else:
+        continuar_jogo=False
+        print("Obrigado por jogar!")
 
-        # jogador para
-        print("\nJogador decide parar...\n")
-        jogo.jogador_para()
-
-        print("\nEstado final:")
-        print(jogo.obter_estado_textual(False))
-
-        # resultado final
-        print("\nResultado:")
-        print(jogo.resultado())
-
-    except Exception as e:
-        print("Erro durante execução:")
-        print(e)
+    
 
 
-if __name__ == "__main__":
-    main()
+
+    
+

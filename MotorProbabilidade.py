@@ -53,9 +53,9 @@ class MotorProbabilidade:
 
         resumo=(
            f"------------------------------\n"
-           f"Risco de estourar: {chance_estourar:.1f}%"
-           f"Chance de carta alta no baralho: {chance_alta:.1f}%"
-           f"Sua chance real em comparação com o hilo: {dif_hilo:.2f}%"
+           f"Risco de estourar: {chance_estourar:.1f}%  \n"
+           f"Chance de carta alta no baralho: {chance_alta:.1f}% \n"
+           f"Sua chance real em comparação com o hilo: {dif_hilo:.2f}% \n"
         )
         return resumo
 
