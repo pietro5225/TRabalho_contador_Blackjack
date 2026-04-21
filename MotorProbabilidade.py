@@ -7,7 +7,8 @@ class MotorProbabilidade:
         self.contador_hilo= contador_hilo
         
 
-    def calcular_probabilidades_reais(self,mao_atual):
+    def calcular_probabilidades_reais(self,mao_atual: int)-> float:
+        """Calcula a probabilidade de estourar a mão e perder """
         baralho_atual=len(self.baralho.cartas)
         cartas_perde=0
         limite=21-mao_atual  
@@ -18,7 +19,8 @@ class MotorProbabilidade:
 
         return ((cartas_perde/baralho_atual)*100)
     
-    def probabilidade_carta_alta(self):
+    def probabilidade_carta_alta(self)-> float :
+        """Calcula a probabilidade de ter cartas altas no baralho """
         baralho_atual=len(self.baralho.cartas)
         cartas_altas=0
 
@@ -28,7 +30,8 @@ class MotorProbabilidade:
 
         return ((cartas_altas/baralho_atual)*100)
     
-    def probabilidade_cada_carta(self):
+    def probabilidade_cada_carta(self)-> dict:
+        """Calcula a probabilidade de tirar cada uma das cartas no baralho """
         baralho_atual=len(self.baralho.cartas)
         valores=["2","3","4","5","6","7","8","9","10","J","Q","K","A"]
         probababilidades_por_carta={}
@@ -43,10 +46,12 @@ class MotorProbabilidade:
         return probababilidades_por_carta
         #Retorna um dicionario com cada probabilidade de tirar cada uma das cartas
     
-    def probabilidade_calculada(self):
+    def probabilidade_calculada(self)-> float:
+        """Calcula a probabilidade de carta alta- a probabilidade contada com o método HiLo """
         return (self.probabilidade_carta_alta()-((self.contador_hilo.probabilidade_empirica_alta(len(self.baralho.cartas)))))
     
-    def obter_resumo_probabilidades(self, mao_atual):
+    def obter_resumo_probabilidades(self, mao_atual:int )->str:
+        """A função que mostra cada uma das probabilidades calculadas na classe """
         chance_estourar=self.calcular_probabilidades_reais(mao_atual)
         chance_alta=self.probabilidade_carta_alta()
         dif_hilo=self.probabilidade_calculada()

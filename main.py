@@ -1,6 +1,6 @@
 from JogoBlackjack import JogoBlackjack 
 
-quantidade_baralhos=1
+quantidade_baralhos=10
 continuar_jogo=True
 jogo=JogoBlackjack(quantidade_baralhos)
 
