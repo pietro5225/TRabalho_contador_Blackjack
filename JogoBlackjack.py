@@ -5,7 +5,7 @@ from MotorProbabilidade import MotorProbabilidade
 from ContadorHilo import ContadorHilo
 #Classe jogoblackjack: fundamental para controlar a lógica principal do jogo
 class JogoBlackjack:
-    def __init__(self, quantidade_baralhos: int = 1): 
+    def __init__(self, quantidade_baralhos: int ): 
         self.baralho = Baralho(quantidade_baralhos)
         self.contador_hilo = ContadorHilo()
         self.motor_probabilidade = MotorProbabilidade(self.baralho, self.contador_hilo)

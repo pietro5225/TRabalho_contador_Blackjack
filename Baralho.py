@@ -3,7 +3,7 @@ from Carta import Carta
 class Baralho:
     """Representa um conjunto de cartas (um ou mais baralhos)."""
 
-    def __init__(self, quantidade_baralhos=1):
+    def __init__(self, quantidade_baralhos):
         """Inicializa o baralho com uma quantidade de decks."""
         self.quantidade_baralhos = quantidade_baralhos
         self.cartas = []
