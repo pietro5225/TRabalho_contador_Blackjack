@@ -5,7 +5,7 @@ class ContadorHilo:
     def __init__(self):
         self.contagem_recorrente = 0
 
-    def atualizar(self, carta):
+    def atualizar(self, carta:Carta):
         if carta is not None:
             self.contagem_recorrente += int(carta.valor_hilo())
 
